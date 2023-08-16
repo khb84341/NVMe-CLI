@@ -16,5 +16,7 @@ tests/__pycache__
 tests/nvmetests
 tests/*.pyc
 
+tags
+
 .build
 .cache

@@ -348,6 +348,11 @@ int nvme_cli_get_log_persistent_event(struct nvme_dev *dev,
 			   pevent_log);
 }
 
+int nvme_cli_get_log_write_amplification(struct nvme_dev *dev, void *waf_log) //update~
+{
+	return do_admin_op(get_log_write_amplification, dev, waf_log);
+}																				//~update
+
 int nvme_cli_fw_download(struct nvme_dev *dev,
 			 struct nvme_fw_download_args *args)
 {

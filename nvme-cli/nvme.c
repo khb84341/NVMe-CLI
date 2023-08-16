@@ -2534,6 +2534,36 @@ ret:
 	return err;
 }
 
+static int get_write_amplification_log(int argc, char **argv, struct command *cmd, 
+				struct plugin *plugin) //update~
+{
+	const char *desc = "Retrives write amplification log page and prints the log.";
+	struct nvme_dev *dev; 
+	uint64_t waf_log;
+	int err = -1;
+	
+	OPT_ARGS(opts) = {
+		OPT_END()
+	};
+
+	err = parse_and_open(&dev, argc, argv, desc, opts);
+	if (err)
+		goto ret;
+	
+	err = nvme_cli_get_log_write_amplification(dev, &waf_log);
+
+	if (!err)
+		nvme_show_write_amplification_log(waf_log);
+	else if (err > 0)
+		nvme_show_status(err);
+	else
+		nvme_show_error("write amplification log page: %s", nvme_strerror(errno)); 
+close_dev:
+	dev_close(dev);
+ret:
+	return err;
+} 										//~update
+
 static int list_ctrl(int argc, char **argv, struct command *cmd, struct plugin *plugin)
 {
 	const char *desc = "Show controller list information for the subsystem the\n"

@@ -264,6 +264,11 @@ void nvme_show_media_unit_stat_log(struct nvme_media_unit_stat_log *mus_log,
 	nvme_print(media_unit_stat_log, flags, mus_log);
 }
 
+void nvme_show_write_amplification_log(uint64_t waf_log)	//update~
+{ 
+	printf("waf: %f\n", (float)waf_log / 100);
+}															//~update
+
 void nvme_show_fdp_configs(struct nvme_fdp_config_log *log, size_t len,
 		enum nvme_print_flags flags)
 {

@@ -2159,6 +2159,27 @@ static inline int nvme_get_log_persistent_event(int fd,
 	return nvme_get_log_page(fd, NVME_LOG_PAGE_PDU_SIZE, &args);
 }
 
+static inline int nvme_get_log_write_amplification(int fd, void *waf_log) //update~
+{
+	struct nvme_get_log_args args = {
+		.lpo = 0,
+		.result = NULL,
+		.log = waf_log,
+		.args_size = sizeof(args),
+		.fd = fd,
+		.timeout = NVME_DEFAULT_IOCTL_TIMEOUT,
+		.lid = NVME_LOG_LID_WRITE_AMPLIFICATION,
+		.len = sizeof(uint64_t),
+		.nsid = NVME_NSID_NONE,
+		.csi = NVME_CSI_NVM,
+		.lsi = NVME_LOG_LSI_NONE,
+		.lsp = NVME_LOG_LSP_NONE,
+		.uuidx = NVME_UUID_NONE,
+		.rae = false,
+		.ot = false,
+	}; 
+	return nvme_get_log_page(fd, NVME_LOG_PAGE_PDU_SIZE, &args);
+}																		//~update
 /**
  * nvme_set_features() - Set a feature attribute
  * @args:	&struct nvme_set_features_args argument structure

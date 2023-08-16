@@ -2310,6 +2310,13 @@ static inline int nvme_mi_admin_get_log_persistent_event(nvme_mi_ctrl_t ctrl,
 	return nvme_mi_admin_get_log(ctrl, &args);
 }
 
+static inline int nvme_mi_admin_get_log_write_amplification(nvme_mi_ctrl_t ctrl, 
+				void *waf_log) 								//update~
+{
+	printf("Noop\n");
+	return 0;
+}															//~update
+
 /**
  * nvme_mi_admin_security_send() - Perform a Security Send command on a
  * controller.

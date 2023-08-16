@@ -13,5 +13,7 @@ compile_commands.json
 .build
 .cache
 
+src/nvme/tags
+
 subprojects/*
 !subprojects/*.wrap

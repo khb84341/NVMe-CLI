@@ -1,1 +1,1 @@
-# nvme-cli supporting WAFLogPage
+# nvme-cli supporting waf log page
